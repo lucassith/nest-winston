@@ -3,22 +3,22 @@
 </p>
 
 <h1 align="center">
-  nest-winston
+  @lucassith/nest-winston
 </h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg"></a>
-  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
-  <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
-  <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston"></a>
+  <a href="https://www.npmjs.com/package/@lucassith/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/@lucassith/nest-winston.svg"></a>
+  <a href="https://www.npmjs.com/package/@lucassith/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/@lucassith/nest-winston.svg"></a>
+  <a href="https://github.com/gremo/@lucassith/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/@lucassith/nest-winston"></a>
+  <a href="https://github.com/gremo/@lucassith/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/@lucassith/nest-winston"></a>
   <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"></a>
 </p>
 
 <p align="center">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/test.yaml">
-  <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg"></a>
-  <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/@lucassith/nest-winston">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/@lucassith/nest-winston/test.yaml">
+  <a href="https://github.com/gremo/@lucassith/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/@lucassith/nest-winston.svg"></a>
+  <a href="https://github.com/gremo/@lucassith/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/@lucassith/nest-winston"></a>
 </p>
 
 <p align="center">
@@ -46,10 +46,10 @@
 ## Installation
 
 ```bash
-npm install --save nest-winston winston
+npm install --save @lucassith/@lucassith/nest-winston winston
 ```
 
-Having troubles configuring `nest-winston`? Clone this repository and `cd` in a sample:
+Having troubles configuring `@lucassith/@lucassith/nest-winston`? Clone this repository and `cd` in a sample:
 
 ```bash
 cd sample/quick-start
@@ -65,7 +65,7 @@ Import `WinstonModule` into the root `AppModule` and use the `forRoot()` method 
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@lucassith/@lucassith/nest-winston';
 import * as winston from 'winston';
 
 @Module({
@@ -82,7 +82,7 @@ Afterward, the winston instance will be available to inject across entire projec
 
 ```typescript
 import { Controller, Inject } from '@nestjs/common';
-import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { WINSTON_MODULE_PROVIDER } from '@lucassith/nest-winston';
 import { Logger } from 'winston';
 
 @Controller('cats')
@@ -99,7 +99,7 @@ Maybe you need to asynchronously pass your module options, for example when you 
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@lucassith/nest-winston';
 import * as winston from 'winston';
 
 @Module({
@@ -134,7 +134,7 @@ This module also provides the `WinstonLogger` class (custom implementation of th
 Change your `main.ts` as shown below:
 
 ```typescript
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { WINSTON_MODULE_NEST_PROVIDER } from '@lucassith/nest-winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -148,7 +148,7 @@ Then inject the logger using the `WINSTON_MODULE_NEST_PROVIDER` token and the `L
 
 ```typescript
 import { Controller, Inject, LoggerService } from '@nestjs/common';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { WINSTON_MODULE_NEST_PROVIDER } from '@lucassith/nest-winston';
 
 @Controller('cats')
 export class CatsController {
@@ -167,7 +167,7 @@ Using the dependency injection has one minor drawback. Nest has to bootstrap the
 One solution is to create the logger outside of the application lifecycle, using the `createLogger` function, and pass it to `NestFactory.create`. Nest will then wrap our winston logger (the same instance returned by the `createLogger` method) into the `Logger` class, forwarding all calls to it:
 
 ```typescript
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@lucassith/nest-winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -184,7 +184,7 @@ An alternative is to provide directly an instance of Winston in the options. Thi
 
 ```typescript
 import { createLogger } from 'winston';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@lucassith/nest-winston';
 
 async function bootstrap() {
   // createLogger of Winston
@@ -254,7 +254,7 @@ The module also provides a custom Nest-like special formatter for console transp
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
+import { utilities as nestWinstonModuleUtilities, WinstonModule } from '@lucassith/nest-winston';
 import * as winston from 'winston';
 
 @Module({
@@ -338,7 +338,7 @@ Some notes about upgrading to a major or minor version.
 
 All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
 
-[![Contributors list](https://raw.githubusercontent.com/gremo/nest-winston/main/contributors.svg)](https://github.com/gremo/nest-winston/graphs/contributors)
+[![Contributors list](https://raw.githubusercontent.com/gremo/@lucassith/nest-winston/main/contributors.svg)](https://github.com/gremo/@lucassith/nest-winston/graphs/contributors)
 
 ## License
 
